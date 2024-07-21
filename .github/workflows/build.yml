@@ -31,7 +31,7 @@ jobs:
         run: |
           mkdir -p build
           cd build
-          cmake ../COS3711-02-04/
+          cmake ../COS3711-03-01/
           make
 
       - name: Upload build artifacts

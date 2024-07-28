@@ -15,11 +15,12 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(UNIT_TEST_SOURCES
-    tst_author.cpp
-    tst_author.h
+    tst_author.h tst_author.cpp
+    testbook.h testbook.cpp
 )
 
-add_executable(UnitTests ${UNIT_TEST_SOURCES})
+add_executable(UnitTests ${UNIT_TEST_SOURCES}
+    main.cpp)
 
 # Link the library from the main project and set include directories
 target_link_libraries(UnitTests PRIVATE MyProjectLib Qt${QT_VERSION_MAJOR}::Test)

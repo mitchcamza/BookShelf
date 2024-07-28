@@ -5,14 +5,14 @@ on:
     branches: 
       - main
       - dev
-      - COS3711-03-*
+      - COS3711-03-01
       - feature/*
 
   pull_request:
     branches: 
       - main
       - dev
-      - COS3711-03-*
+      - COS3711-03-01
 
 jobs:
   build:

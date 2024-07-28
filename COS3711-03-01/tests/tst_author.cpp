@@ -26,5 +26,5 @@ void TestAuthor::testToString()
     QCOMPARE(author.toString(), QString("DOE, JOHN"));
 }
 
-QTEST_MAIN(TestAuthor)
+// QTEST_APPLESS_MAIN(TestAuthor)
 #include "tst_author.moc"

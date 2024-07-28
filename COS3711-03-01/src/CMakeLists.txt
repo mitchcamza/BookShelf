@@ -18,6 +18,8 @@ set(PROJECT_SOURCES
     mainwindow.h
     author.cpp
     author.h
+    book.h
+    book.cpp
 )
 
 # Create a library target from the sources
@@ -26,6 +28,8 @@ add_library(MyProjectLib STATIC
     mainwindow.h
     author.cpp
     author.h
+    book.h
+    book.cpp
 )
 
 target_include_directories(MyProjectLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
@@ -35,7 +39,7 @@ target_link_libraries(MyProjectLib PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(COS3711-03-01
         MANUAL_FINALIZATION
-        ${PROJECT_SOURCES}
+        ${PROJECT_SOURCES} 
     )
 else()
     if(ANDROID)

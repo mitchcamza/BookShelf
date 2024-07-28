@@ -22,33 +22,29 @@ set(PROJECT_SOURCES
     book.cpp
 )
 
-# Create a library target from the sources
-add_library(MyProjectLib STATIC
-    mainwindow.cpp
-    mainwindow.h
-    author.cpp
-    author.h
-    book.h
-    book.cpp
-)
+# Create library
+add_library(MyProjectLib ${PROJECT_SOURCES})
 
+# Include directories for the library
 target_include_directories(MyProjectLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
+# Link the library to the executable
 target_link_libraries(MyProjectLib PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
+# Create the main executable
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(COS3711-03-01
         MANUAL_FINALIZATION
-        ${PROJECT_SOURCES} 
+        main.cpp
     )
 else()
     if(ANDROID)
         add_library(COS3711-03-01 SHARED
-            ${PROJECT_SOURCES}
+            main.cpp
         )
     else()
         add_executable(COS3711-03-01
-            ${PROJECT_SOURCES}
+            main.cpp
         )
     endif()
 endif()

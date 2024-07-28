@@ -24,6 +24,9 @@ add_executable(UnitTests ${UNIT_TEST_SOURCES}
 
 # Link the library from the main project and set include directories
 target_link_libraries(UnitTests PRIVATE MyProjectLib Qt${QT_VERSION_MAJOR}::Test)
+
+# Include directories for the tests
 target_include_directories(UnitTests PRIVATE ${CMAKE_SOURCE_DIR}/../src)
 
+# Add tests
 add_test(NAME UnitTests COMMAND UnitTests)

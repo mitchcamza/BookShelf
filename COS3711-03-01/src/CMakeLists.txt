@@ -13,13 +13,11 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_SOURCES
-    main.cpp
-    mainwindow.cpp
-    mainwindow.h
-    author.cpp
-    author.h
-    book.h
-    book.cpp
+    resources.qrc
+    mainwindow.h mainwindow.cpp
+    author.h author.cpp
+    book.h book.cpp
+    bookinput.h bookinput.cpp
 )
 
 # Create library

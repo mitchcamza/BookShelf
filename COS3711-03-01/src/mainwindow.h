@@ -38,15 +38,14 @@ private slots:
     void clearFilter();
 
 private:
-    BookView *bookView;
-    BookProxyModel *bookProxyModel;
+    // BookView *bookView;
+    // BookProxyModel *bookProxyModel;
 
-    QMenuBar *menuBar;
-    QStatusBar *statusBar;
-    QToolBar *toolBar;
+    // QMenuBar *menuBar;
+    // QStatusBar *statusBar;
+    // QToolBar *toolBar;
     QAction *actionAddBook;
     QAction *actionExportBooks;
-    QAction *searchBook;
     QAction *actionClose;
     QLineEdit *lineEditSearch;
     QPushButton *pushButtonClear;

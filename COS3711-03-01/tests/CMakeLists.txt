@@ -18,6 +18,7 @@ set(UNIT_TEST_SOURCES
     tst_author.h tst_author.cpp
     testbook.h testbook.cpp
     testbooktablemodel.h testbooktablemodel.cpp
+    testbookproxymodel.h testbookproxymodel.cpp
 )
 
 add_executable(UnitTests ${UNIT_TEST_SOURCES}

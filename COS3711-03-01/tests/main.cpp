@@ -1,6 +1,8 @@
 #include "tst_author.h"
 #include "testbook.h"
 #include "testbooktablemodel.h"
+#include "testbookproxymodel.h"
+
 
 int main(int argc, char *argv[])
 {
@@ -15,6 +17,10 @@ int main(int argc, char *argv[])
     }
     {
         TestBookTableModel tc;
+        status |= QTest::qExec(&tc, argc, argv);
+    }
+    {
+        TestBookProxyModel tc;
         status |= QTest::qExec(&tc, argc, argv);
     }
 

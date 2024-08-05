@@ -22,7 +22,8 @@ set(PROJECT_SOURCES
 
 # Create library
 add_library(MyProjectLib ${PROJECT_SOURCES}
-    booktablemodel.h booktablemodel.cpp)
+    booktablemodel.h booktablemodel.cpp
+    bookproxymodel.h bookproxymodel.cpp)
 
 # Include directories for the library
 target_include_directories(MyProjectLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

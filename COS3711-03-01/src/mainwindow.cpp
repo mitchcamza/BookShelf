@@ -6,10 +6,10 @@
  */
 
 
-#include "mainwindow.h"
-// #include "bookproxymodel.h"
 #include "bookinput.h"
-// #include "bookview.h"
+#include "bookproxymodel.h"
+#include "booktablemodel.h"
+#include "mainwindow.h"
 
 #include <QFileDialog>
 #include <QGridLayout>
@@ -20,23 +20,27 @@
 #include <QMessageBox>
 #include <QPushButton>
 #include <QStatusBar>
-#include <QToolBar>
 #include <QTableView>
+#include <QToolBar>
 
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
-    // menuBar(new QMenuBar(this)),
-    // statusBar(new QStatusBar(this)),
-    // toolBar(new QToolBar(this)),
-    // bookProxyModel(new BookProxyModel(this)),
-    // bookView(new BookView(this)),
+    bookTableModel(new BookTableModel(this)),
+    bookProxyModel(new BookProxyModel(this)),
+    bookTableView(new QTableView(this)),
     actionAddBook(new QAction(QIcon(":/icons/addBook"), tr("New Book"), this)),
     actionExportBooks(new QAction(QIcon(":/icons/export"), tr("Export Books"), this)),
     actionClose(new QAction(QIcon(":/icons/exit"), tr("Exit Application"), this)),
     lineEditSearch(new QLineEdit(this)),
     pushButtonClear(new QPushButton("Clear", this))
 {
+    // Proxy Model
+    bookProxyModel->setSourceModel(bookTableModel);
+    bookProxyModel->setFilterKeyColumn(0);
+    bookProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
+
+    // Signals and Slots connections
     connect(actionAddBook, &QAction::triggered, this, &MainWindow::addBook);
     connect(actionExportBooks, &QAction::triggered, this, &MainWindow::exportBooks);
     // connect(lineEditSearch, &QLineEdit::textEdited, bookProxyModel, &BookProxyModel::setFilterText);
@@ -93,9 +97,11 @@ void MainWindow::setupUI()
     gridLayout->addWidget(lineEditSearch, 0, 0, 1, 3);
     gridLayout->addWidget(pushButtonClear, 0, 3, 1, 1);
 
-    // Proxy Model
-    // TODO: Replace tableView with bookView
-    gridLayout->addWidget(new QTableView(), 1, 0, 1, 4);
+    // Book table view
+    bookTableView->setModel(bookProxyModel);
+    bookTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    bookTableView->setSortingEnabled(true);
+    gridLayout->addWidget(bookTableView, 1, 0, 1, 4);
 }
 
 void MainWindow::addBook()
@@ -111,6 +117,8 @@ void MainWindow::exportBooks()
 
 void MainWindow::clearFilter()
 {
-    // TODO
+    lineEditSearch->clear();
+    lineEditSearch->setFocus();
+    bookProxyModel->setFilter(lineEditSearch->text());
 }
 

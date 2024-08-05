@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file alias="removeAuthor">icons/remove_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg</file>
+        <file alias="addBook">icons/library_add_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg</file>
+        <file alias="exit">icons/exit_to_app_24dp.svg</file>
+        <file alias="export">icons/export_notes_24dp_FILL0_wght400_GRAD0_opsz24.svg</file>
+    </qresource>
+</RCC>

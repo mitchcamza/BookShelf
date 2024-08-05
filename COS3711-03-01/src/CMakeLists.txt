@@ -18,6 +18,8 @@ set(PROJECT_SOURCES
     author.h author.cpp
     book.h book.cpp
     bookinput.h bookinput.cpp
+    booktablemodel.h booktablemodel.cpp
+    bookproxymodel.h bookproxymodel.cpp
 )
 
 # Create library

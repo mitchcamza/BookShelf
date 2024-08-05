@@ -46,10 +46,21 @@ BookInput::~BookInput()
 
 void BookInput::addAuthor()
 {
+    if (lineEditFirstName->text().isEmpty())
+    {
+        QMessageBox::warning(this, "Input Error", "Please enter a first name for the author.");
+        lineEditFirstName->setFocus();
+        return;
+    }
+    if (lineEditLastName->text().isEmpty())
+    {
+        QMessageBox::warning(this, "Input Error", "Please enter a last name for the author.");
+        lineEditLastName->setFocus();
+        return;
+    }
+
     QString author = lineEditLastName->text().toUpper() + ", " + lineEditFirstName->text().toUpper();
     listWidgetAuthors->addItem(author);
-
-    // Clear lineEdits and set focus
     lineEditFirstName->clear();
     lineEditLastName->clear();
     lineEditFirstName->setFocus();

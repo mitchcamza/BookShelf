@@ -52,3 +52,9 @@ compile_commands.json
 *creator.user*
 
 *_qmlcache.qrc
+
+# Build files
+build*/
+
+# Drawio backup files
+*.drawio.bkp

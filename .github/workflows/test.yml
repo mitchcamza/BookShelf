@@ -15,12 +15,6 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Download build artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: build-artifacts
-          path: build/
-
       - name: Set up Qt and dependencies
         run: |
           sudo apt-get update

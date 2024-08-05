@@ -7,12 +7,14 @@ on:
       - dev
       - COS3711-03-01
       - feature/*
+      - workflows
 
   pull_request:
     branches: 
       - main
       - dev
       - COS3711-03-01
+      - workflows
 
 jobs:
   build:
@@ -39,3 +41,6 @@ jobs:
         with:
           name: build-artifacts
           path: build/
+          
+    outputs:
+      build-success: ${{ steps.build.outcome == 'success' }}

@@ -8,9 +8,8 @@ on:
 
 jobs:
   test:
-    needs: Build
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
       - name: Checkout Repository
@@ -20,13 +19,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y libgl1-mesa-dev qt6-base-dev qt6-tools-dev qt6-tools-dev-tools cmake g++
-
-      - name: Build project
-        run: |
-          mkdir -p build
-          cd build
-          cmake ..
-          make
 
       - name: Build and run unit tests
         run: |

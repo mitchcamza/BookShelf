@@ -23,8 +23,7 @@ set(PROJECT_SOURCES
 )
 
 # Create library
-add_library(MyProjectLib ${PROJECT_SOURCES}
-    bookfactory.h bookfactory.cpp)
+add_library(MyProjectLib ${PROJECT_SOURCES})
 
 # Include directories for the library
 target_include_directories(MyProjectLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

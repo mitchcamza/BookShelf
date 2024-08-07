@@ -9,15 +9,14 @@ class QGroupBox;
 class QLineEdit;
 class QListWidget;
 class QPushButton;
+class BookTableModel;
 
 
 class BookInput : public QDialog
 {
     Q_OBJECT
 public:
-    explicit BookInput(QWidget *parent = nullptr);
-    // TODO: inject model into constructor
-
+    explicit BookInput(BookTableModel *model, QWidget *parent = nullptr);
     ~BookInput();
 
 private slots:
@@ -33,6 +32,7 @@ private:
     void setupButtons();
     bool isValidInput();
 
+    BookTableModel *bookTableModel;
     QLineEdit *lineEditTitle;
     QLineEdit *lineEditIsbn;
     QDateEdit *dateEditPublicationDate;

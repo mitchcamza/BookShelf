@@ -32,12 +32,21 @@ MainWindow::MainWindow(QWidget *parent)
     actionExportBooks(new QAction(this)),
     actionClose(new QAction(this)),
     lineEditSearch(new QLineEdit(this)),
+<<<<<<< Updated upstream
     pushButtonClear(new QPushButton(this))
+=======
+    pushButtonClear(new QPushButton("Clear Filter", this))
+{
+    // Proxy Model
+    bookProxyModel->setSourceModel(bookTableModel);
+    bookProxyModel->setFilterKeyColumn(0);
+    bookProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
+>>>>>>> Stashed changes
 
 {
     connect(actionAddBook, &QAction::triggered, this, &MainWindow::addBook);
     connect(actionExportBooks, &QAction::triggered, this, &MainWindow::exportBooks);
-    // connect(lineEditSearch, &QLineEdit::textEdited, bookProxyModel, &BookProxyModel::setFilterText);
+    connect(lineEditSearch, &QLineEdit::textEdited, bookProxyModel, &BookProxyModel::setFilter);
     connect(pushButtonClear, &QPushButton::clicked, this, &MainWindow::clearFilter);
     connect(actionClose, &QAction::triggered, this, &MainWindow::close);
 
@@ -96,7 +105,12 @@ void MainWindow::setupUI()
 
 void MainWindow::addBook()
 {
+<<<<<<< Updated upstream
     // TODO
+=======
+    BookInput *bookInputDialog = new BookInput(bookTableModel, this);
+    bookInputDialog->show();
+>>>>>>> Stashed changes
 }
 
 void MainWindow::exportBooks()

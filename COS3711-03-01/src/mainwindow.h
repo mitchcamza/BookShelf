@@ -9,10 +9,12 @@
 #define MAINWINDOW_H
 
 
+class BookProxyModel;
+class BookTableModel;
+class BookView;
 class QLineEdit;
 class QPushButton;
-class BookView;
-class BookProxyModel;
+class QTableView;
 
 #include <QMainWindow>
 
@@ -38,15 +40,11 @@ private slots:
     void clearFilter();
 
 private:
-    BookView *bookView;
+    BookTableModel *bookTableModel;
     BookProxyModel *bookProxyModel;
-
-    QMenuBar *menuBar;
-    QStatusBar *statusBar;
-    QToolBar *toolBar;
+    QTableView *bookTableView;
     QAction *actionAddBook;
     QAction *actionExportBooks;
-    QAction *searchBook;
     QAction *actionClose;
     QLineEdit *lineEditSearch;
     QPushButton *pushButtonClear;

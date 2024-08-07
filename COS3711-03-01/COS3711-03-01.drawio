@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2024-07-30T16:36:34.755Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.6.4 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" etag="k-16yr9vJ6ULwAqXtUkk" version="24.6.4" type="device">
+<mxfile host="Electron" modified="2024-08-06T13:08:42.070Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.6.4 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" etag="2MUYOWNRhgzR3xg8WMUV" version="24.6.4" type="device">
   <diagram id="6iuWq0UelAJ61aAoiBDy" name="Book Shelf">
-    <mxGraphModel dx="1696" dy="1716" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1288" dy="1299" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -97,40 +97,22 @@
         <mxCell id="gvHln3FCuM-_E14BoruI-77" value="+ BookProxyModel(parent: QObject)&lt;div&gt;+ setFilterText(filterText: QString)&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;" parent="gvHln3FCuM-_E14BoruI-74" vertex="1">
           <mxGeometry y="34" width="500" height="56" as="geometry" />
         </mxCell>
-        <mxCell id="gvHln3FCuM-_E14BoruI-78" value="&lt;div&gt;BookView&lt;/div&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;" parent="1" vertex="1">
-          <mxGeometry x="1050" y="-610" width="400" height="98" as="geometry" />
-        </mxCell>
-        <mxCell id="gvHln3FCuM-_E14BoruI-79" value="- tableView: QTableView&lt;div&gt;- model: BookTableModel&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;" parent="gvHln3FCuM-_E14BoruI-78" vertex="1">
-          <mxGeometry y="26" width="400" height="34" as="geometry" />
-        </mxCell>
-        <mxCell id="gvHln3FCuM-_E14BoruI-80" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;labelBackgroundColor=none;" parent="gvHln3FCuM-_E14BoruI-78" vertex="1">
-          <mxGeometry y="60" width="400" height="8" as="geometry" />
-        </mxCell>
-        <mxCell id="gvHln3FCuM-_E14BoruI-81" value="&lt;div&gt;+ addBook(title: QString, authors: QString, isbn: QString, date: QString)&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;" parent="gvHln3FCuM-_E14BoruI-78" vertex="1">
-          <mxGeometry y="68" width="400" height="30" as="geometry" />
-        </mxCell>
         <mxCell id="we9DT2KBn4o6eFFRd77e-5" value="&lt;div&gt;MainWindow&lt;/div&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;" vertex="1" parent="1">
-          <mxGeometry x="1670" y="-375" width="500" height="360" as="geometry" />
+          <mxGeometry x="1670" y="-410" width="500" height="310" as="geometry" />
         </mxCell>
-        <mxCell id="we9DT2KBn4o6eFFRd77e-6" value="&lt;div&gt;- bookView: BookView&lt;/div&gt;&lt;div&gt;- bookModel: BookModel&lt;/div&gt;&lt;div&gt;- menuBar: QMenuBar&lt;/div&gt;&lt;div&gt;- statusBar: QStatusBar&lt;/div&gt;&lt;div&gt;- toolBar: QToolBar&lt;/div&gt;&lt;div&gt;- actionAddBook: QAction&lt;/div&gt;&lt;div&gt;- actionExportBooks: QAction&lt;/div&gt;&lt;div&gt;- actionSearchBook: QAction&lt;/div&gt;&lt;div&gt;- actionCloseApplicationWindow(): QAction&lt;/div&gt;&lt;div&gt;- lineEditSearch: QLineEdit&lt;/div&gt;&lt;div&gt;- pushButtonClear: QPushButton&lt;/div&gt;&lt;div&gt;- proxyModel: BookFilterProxyModel&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;" vertex="1" parent="we9DT2KBn4o6eFFRd77e-5">
-          <mxGeometry y="26" width="500" height="184" as="geometry" />
+        <mxCell id="we9DT2KBn4o6eFFRd77e-6" value="&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;- bookModel: BookModel&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- proxyModel: BookFilterProxyModel&lt;/div&gt;&lt;div&gt;- bookTableView: QTableView&lt;br&gt;&lt;/div&gt;&lt;div&gt;- actionAddBook: QAction&lt;/div&gt;&lt;div&gt;- actionExportBooks: QAction&lt;/div&gt;&lt;div&gt;- actionClose: QAction&lt;/div&gt;&lt;div&gt;- lineEditSearch: QLineEdit&lt;/div&gt;&lt;div&gt;- pushButtonClear: QPushButton&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;" vertex="1" parent="we9DT2KBn4o6eFFRd77e-5">
+          <mxGeometry y="26" width="500" height="134" as="geometry" />
         </mxCell>
         <mxCell id="we9DT2KBn4o6eFFRd77e-7" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;labelBackgroundColor=none;" vertex="1" parent="we9DT2KBn4o6eFFRd77e-5">
-          <mxGeometry y="210" width="500" height="8" as="geometry" />
+          <mxGeometry y="160" width="500" height="8" as="geometry" />
         </mxCell>
         <mxCell id="we9DT2KBn4o6eFFRd77e-8" value="&lt;div&gt;&lt;div&gt;+ MainWindow(parent: QWidget)&lt;/div&gt;&lt;/div&gt;&lt;div&gt;+ ~MainWindow()&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ setupUI()&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;- addBook()&lt;/div&gt;&lt;div&gt;- exportBooks()&lt;/div&gt;&lt;div&gt;- clearFilter()&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;" vertex="1" parent="we9DT2KBn4o6eFFRd77e-5">
-          <mxGeometry y="218" width="500" height="142" as="geometry" />
+          <mxGeometry y="168" width="500" height="142" as="geometry" />
         </mxCell>
         <mxCell id="we9DT2KBn4o6eFFRd77e-9" value="" style="endArrow=diamondThin;endFill=1;endSize=24;html=1;rounded=0;" edge="1" parent="1" source="gvHln3FCuM-_E14BoruI-74" target="we9DT2KBn4o6eFFRd77e-5">
           <mxGeometry width="160" relative="1" as="geometry">
             <mxPoint x="660" y="-470" as="sourcePoint" />
             <mxPoint x="820" y="-470" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="we9DT2KBn4o6eFFRd77e-10" value="" style="endArrow=diamondThin;endFill=1;endSize=24;html=1;rounded=0;" edge="1" parent="1" source="gvHln3FCuM-_E14BoruI-78" target="we9DT2KBn4o6eFFRd77e-5">
-          <mxGeometry width="160" relative="1" as="geometry">
-            <mxPoint x="1340" y="-680" as="sourcePoint" />
-            <mxPoint x="1500" y="-680" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="we9DT2KBn4o6eFFRd77e-11" value="" style="endArrow=diamondThin;endFill=0;endSize=24;html=1;rounded=0;" edge="1" parent="1" source="gvHln3FCuM-_E14BoruI-51" target="gvHln3FCuM-_E14BoruI-74">
@@ -179,6 +161,12 @@
           <mxGeometry width="160" relative="1" as="geometry">
             <mxPoint x="2290" y="10" as="sourcePoint" />
             <mxPoint x="2450" y="10" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8dgmckmYpp2PSS6kHg5K-3" value="Use" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="gvHln3FCuM-_E14BoruI-65" target="we9DT2KBn4o6eFFRd77e-14">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="1370" y="70" as="sourcePoint" />
+            <mxPoint x="1530" y="70" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>

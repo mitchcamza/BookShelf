@@ -21,7 +21,7 @@ public:
     void addBook(Book *book);
 
 private:
-    QList<Book*> books;
+    QList<Book*> bookList;
 
 };
 

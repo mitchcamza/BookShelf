@@ -1,4 +1,7 @@
+#include "book.h"
 #include "bookinput.h"
+#include "booktablemodel.h"
+#include "bookfactory.h"
 
 #include <QDateEdit>
 #include <QGridLayout>
@@ -12,8 +15,9 @@
 #include <QRegularExpressionMatch>
 
 
-BookInput::BookInput(QWidget *parent)
+BookInput::BookInput(BookTableModel *model, QWidget *parent)
     : QDialog{parent},
+    bookTableModel(model),
     mainLayout(new QGridLayout(this)),
     gridLayoutBook(new QGridLayout()),
     gridLayoutAuthor(new QGridLayout()),
@@ -78,7 +82,30 @@ void BookInput::saveBook()
         return;
     }
 
-    // TODO: add book and author to model
+    // Add book and author to model
+    QString title = lineEditTitle->text();
+    QStringList authors;
+    for (int i = 0; i < listWidgetAuthors->count(); i++)
+    {
+        QListWidgetItem *item = listWidgetAuthors->item(i);
+        if (item)
+        {
+            authors.append(item->text());
+        }
+    }
+    QString isbn = lineEditIsbn->text();
+    QDate publicationDate = dateEditPublicationDate->date();
+
+    // Create the new book using the book factory
+    BookFactory &bookFactory = BookFactory::getInstance();
+    Book *newBook = bookFactory.createBook(title, authors, isbn, publicationDate);
+
+    // Add the new book to the model
+    bookTableModel->addBook(newBook);
+
+    // Close the dialog
+    accept();
+
 }
 
 void BookInput::cancel()
@@ -108,6 +135,8 @@ void BookInput::setupBookGroup()
 
     // ISBN
     QLabel *labelIsbn = new QLabel("ISBN", this);
+    lineEditIsbn->setInputMask("999-9-99-999999-9;_");
+    lineEditIsbn->setPlaceholderText("978-3-16-148410-0");
     gridLayoutBook->addWidget(labelIsbn, 1, 0);
     gridLayoutBook->addWidget(lineEditIsbn, 1, 1, 1, 3);
 
@@ -174,12 +203,19 @@ bool BookInput::isValidInput()
         return false;
     }
 
-    // Check if ISBN is empty or invalid
-    static QRegularExpression isbnRegex("\\d{3}-\\d{1,5}-\\d{1,7}-\\d{1,7}-\\d{1}");
-    QRegularExpressionMatch isbnMatch = isbnRegex.match(lineEditIsbn->text());
-    if (lineEditIsbn->text().isEmpty() || !isbnMatch.hasMatch())
+    // // Check if ISBN is empty or invalid
+    // static QRegularExpression isbnRegex("\\d{3}-\\d{1,5}-\\d{1,7}-\\d{1,7}-\\d{1}");
+    // QRegularExpressionMatch isbnMatch = isbnRegex.match(lineEditIsbn->text());
+    // if (lineEditIsbn->text().isEmpty() || !isbnMatch.hasMatch())
+    // {
+    //     QMessageBox::warning(this, "Input Error", "Please enter a valid ISBN (format: 978-3-16-148410-0).");
+    //     lineEditIsbn->setFocus();
+    //     return false;
+    // }
+    // Check if ISBN is empty
+    if (lineEditIsbn->text().isEmpty())
     {
-        QMessageBox::warning(this, "Input Error", "Please enter a valid ISBN (format: 978-3-16-148410-0).");
+        QMessageBox::warning(this, "Input Error", "Please enter an ISBN.");
         lineEditIsbn->setFocus();
         return false;
     }

@@ -33,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
     actionExportBooks(new QAction(QIcon(":/icons/export"), tr("Export Books"), this)),
     actionClose(new QAction(QIcon(":/icons/exit"), tr("Exit Application"), this)),
     lineEditSearch(new QLineEdit(this)),
-    pushButtonClear(new QPushButton("Clear", this))
+    pushButtonClear(new QPushButton("Clear Filter", this))
 {
     // Proxy Model
     bookProxyModel->setSourceModel(bookTableModel);
@@ -43,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent)
     // Signals and Slots connections
     connect(actionAddBook, &QAction::triggered, this, &MainWindow::addBook);
     connect(actionExportBooks, &QAction::triggered, this, &MainWindow::exportBooks);
-    // connect(lineEditSearch, &QLineEdit::textEdited, bookProxyModel, &BookProxyModel::setFilterText);
+    connect(lineEditSearch, &QLineEdit::textEdited, bookProxyModel, &BookProxyModel::setFilter);
     connect(pushButtonClear, &QPushButton::clicked, this, &MainWindow::clearFilter);
     connect(actionClose, &QAction::triggered, this, &MainWindow::close);
 
@@ -106,7 +106,7 @@ void MainWindow::setupUI()
 
 void MainWindow::addBook()
 {
-    BookInput *bookInputDialog = new BookInput(this);
+    BookInput *bookInputDialog = new BookInput(bookTableModel, this);
     bookInputDialog->show();
 }
 

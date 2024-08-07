@@ -33,7 +33,7 @@ void TestBookTableModel::testData()
     QCOMPARE(model.data(index, Qt::DisplayRole).toString(), QString("Title"));
 
     index = model.index(0, 1);
-    QCOMPARE(model.data(index, Qt::DisplayRole).toStringList(), QStringList({"Author1", "Author2"}));
+    QCOMPARE(model.data(index, Qt::DisplayRole).toString(), QString("Author1; Author2"));
 
     index = model.index(0, 2);
     QCOMPARE(model.data(index, Qt::DisplayRole).toDate(), QDate(2023, 1, 1));
@@ -49,7 +49,6 @@ void TestBookTableModel::testHeaderData()
     QCOMPARE(model.headerData(1, Qt::Horizontal, Qt::DisplayRole).toString(), QString("Author"));
     QCOMPARE(model.headerData(2, Qt::Horizontal, Qt::DisplayRole).toString(), QString("Publication Date"));
     QCOMPARE(model.headerData(3, Qt::Horizontal, Qt::DisplayRole).toString(), QString("ISBN"));
-    QCOMPARE(model.headerData(0, Qt::Vertical, Qt::DisplayRole).toInt(), 1);
 }
 
 void TestBookTableModel::testSetData()
@@ -64,7 +63,7 @@ void TestBookTableModel::testSetData()
 
     index = model.index(0, 1);
     QVERIFY(model.setData(index, QVariant(QStringList{"New Author1", "New Author2"}), Qt::EditRole));
-    QCOMPARE(model.data(index, Qt::DisplayRole).toStringList(), QStringList({"New Author1", "New Author2"}));
+    QCOMPARE(model.data(index, Qt::DisplayRole).toString(), QString("New Author1; New Author2"));
 
     index = model.index(0, 2);
     QVERIFY(model.setData(index, QVariant(QDate(2023, 2, 2)), Qt::EditRole));

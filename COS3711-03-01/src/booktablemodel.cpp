@@ -8,7 +8,7 @@ BookTableModel::BookTableModel(QObject *parent)
 
 BookTableModel::~BookTableModel()
 {
-    qDeleteAll(bookList);
+    qDeleteAll(books);
 }
 
 int BookTableModel::rowCount(const QModelIndex &parent) const
@@ -17,7 +17,7 @@ int BookTableModel::rowCount(const QModelIndex &parent) const
     {
         return 0;
     }
-    return bookList.size();
+    return books.size();
 }
 
 int BookTableModel::columnCount(const QModelIndex &parent) const
@@ -27,7 +27,7 @@ int BookTableModel::columnCount(const QModelIndex &parent) const
     {
         return 0;
     }
-    return 4;   // title, authors, publication date, isbn
+    return 4;   // title, author, publication date, isbn
 }
 
 QVariant BookTableModel::data(const QModelIndex &index, int role) const
@@ -42,20 +42,10 @@ QVariant BookTableModel::data(const QModelIndex &index, int role) const
         int col = index.column();
         int row = index.row();
 
-        if (col == 0) { return bookList.at(row)->getTitle(); }
-        if (col == 1)
-        {
-            if (bookList.at(row)->getAuthors().count() == 1)
-            {
-                return bookList.at(row)->getAuthors();
-            }
-            else if (bookList.at(row)->getAuthors().count() > 1)
-            {
-                return bookList.at(row)->getAuthors().join("; ");
-            }
-        }
-        if (col == 2) { return bookList.at(row)->getPublicationDate(); }
-        if (col == 3) { return bookList.at(row)->getIsbn(); }
+        if (col == 0) { return books.at(row)->getTitle(); }
+        if (col == 1) { return books.at(row)->getAuthors(); }
+        if (col == 2) { return books.at(row)->getPublicationDate(); }
+        if (col == 3) { return books.at(row)->getIsbn(); }
     }
     return QVariant();
 }
@@ -85,6 +75,10 @@ QVariant BookTableModel::headerData(int section, Qt::Orientation orientation, in
             break;
         }
     }
+    else if (orientation == Qt::Vertical)
+    {
+        return section + 1; // row numbers
+    }
     return QVariant();
 }
 
@@ -98,16 +92,16 @@ bool BookTableModel::setData(const QModelIndex &index, const QVariant &value, in
         switch (col)
         {
         case 0:
-            bookList.at(row)->setTitle(value.toString());
+            books.at(row)->setTitle(value.toString());
             break;
         case 1:
-            bookList.at(row)->setAuthors(value.toStringList());
+            books.at(row)->setAuthors(value.toStringList());
             break;
         case 2:
-            bookList.at(row)->setPublicationDate(value.toDate());
+            books.at(row)->setPublicationDate(value.toDate());
             break;
         case 3:
-            bookList.at(row)->setIsbn(value.toString());
+            books.at(row)->setIsbn(value.toString());
             break;
         }
         emit dataChanged(index, index, { role });
@@ -120,7 +114,7 @@ Qt::ItemFlags BookTableModel::flags(const QModelIndex &index) const
 {
     if (index.isValid())
     {
-        return (Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+        return (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable);
     }
     else
     {
@@ -130,8 +124,8 @@ Qt::ItemFlags BookTableModel::flags(const QModelIndex &index) const
 
 void BookTableModel::addBook(Book *book)
 {
-    int row = bookList.size();
-    beginInsertRows(QModelIndex(), row, row);
-    bookList.append(book);
+    int row = books.size();
+    beginInsertRows(QModelIndex(), row + 1, row + 1);
+    books.append(book);
     endInsertRows();
 }

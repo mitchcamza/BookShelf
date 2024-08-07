@@ -2,6 +2,7 @@
 #include "testbook.h"
 #include "testbooktablemodel.h"
 #include "testbookproxymodel.h"
+#include "testbookfactory.h"
 
 
 int main(int argc, char *argv[])
@@ -21,6 +22,10 @@ int main(int argc, char *argv[])
     }
     {
         TestBookProxyModel tc;
+        status |= QTest::qExec(&tc, argc, argv);
+    }
+    {
+        TestBookFactory tc;
         status |= QTest::qExec(&tc, argc, argv);
     }
 

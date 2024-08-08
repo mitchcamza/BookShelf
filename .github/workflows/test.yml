@@ -20,18 +20,23 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libgl1-mesa-dev qt6-base-dev qt6-tools-dev qt6-tools-dev-tools cmake g++
 
-      - name: Build and run unit tests
+      - name: Build project
         run: |
+          mkdir -p build
           cd build
-          ctest --output-on-failure
+          cmake ../COS3711-03-01/
+          make
 
-      - name: Build and run integration tests
+      - name: Run unit tests
         run: |
-          cd build/tests/integration
-          ctest --output-on-failure
-
+          cd build/tests  # Adjust this path if your tests are in a different location
+          for test_executable in $(find . -type f -executable); do
+            echo "Running $test_executable"
+            $test_executable
+          done
+          
       - name: Upload test results
         uses: actions/upload-artifact@v3
         with:
           name: test-results
-          path: build/tests/
+          path: build/tests/  

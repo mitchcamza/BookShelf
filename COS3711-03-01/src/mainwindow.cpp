@@ -9,6 +9,7 @@
 #include "bookinput.h"
 #include "bookproxymodel.h"
 #include "booktablemodel.h"
+#include "bookwriter.h"
 #include "mainwindow.h"
 
 #include <QFileDialog>
@@ -112,7 +113,21 @@ void MainWindow::addBook()
 
 void MainWindow::exportBooks()
 {
-    // TODO
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Export Book List"), "", tr("XML Files (*.xml);; All Files (*)"));
+    if (fileName.isEmpty())
+    {
+        return;
+    }
+
+    BookWriter writer(fileName);
+    if (writer.write(bookTableModel->getBookList()))
+    {
+        QMessageBox::information(this, tr("Export Successful"), tr("The book list was exported successfully."));
+    }
+    else
+    {
+        QMessageBox::warning(this, tr("Export Failed"), tr("Failed to export book list."));
+    }
 }
 
 void MainWindow::clearFilter()

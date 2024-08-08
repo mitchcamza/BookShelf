@@ -135,3 +135,8 @@ void BookTableModel::addBook(Book *book)
     bookList.append(book);
     endInsertRows();
 }
+
+QList<Book *> BookTableModel::getBookList() const
+{
+    return bookList;
+}

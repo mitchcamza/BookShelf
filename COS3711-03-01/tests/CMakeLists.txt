@@ -21,11 +21,11 @@ set(UNIT_TEST_SOURCES
     testbookproxymodel.h testbookproxymodel.cpp
     testbookfactory.h testbookfactory.cpp
     testfilewriter.h testfilewriter.cpp
+    testbookwriter.h testbookwriter.cpp
 )
 
 add_executable(UnitTests ${UNIT_TEST_SOURCES}
     main.cpp
-    testbookwriter.h testbookwriter.cpp
 )
 
 # Link the library from the main project and set include directories

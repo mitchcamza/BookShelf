@@ -1,21 +1,11 @@
 name: Build
 
-on:
-  push:
-    branches: 
-      - main
-      - dev
-      - COS3711-03-01
-      - feature/*
-      - workflows
-
+on:   
   pull_request:
     branches: 
       - main
       - dev
-      - COS3711-03-01
-      - workflows
-
+      
 jobs:
   build:
     runs-on: ubuntu-latest

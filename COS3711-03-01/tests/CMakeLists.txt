@@ -4,8 +4,8 @@ project(UnitTests LANGUAGES CXX)
 
 enable_testing()
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Test)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Test)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Test Xml)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Test Xml)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -20,6 +20,8 @@ set(UNIT_TEST_SOURCES
     testbooktablemodel.h testbooktablemodel.cpp
     testbookproxymodel.h testbookproxymodel.cpp
     testbookfactory.h testbookfactory.cpp
+    testfilewriter.h testfilewriter.cpp
+    testbookwriter.h testbookwriter.cpp
 )
 
 add_executable(UnitTests ${UNIT_TEST_SOURCES}
@@ -28,6 +30,7 @@ add_executable(UnitTests ${UNIT_TEST_SOURCES}
 
 # Link the library from the main project and set include directories
 target_link_libraries(UnitTests PRIVATE MyProjectLib Qt${QT_VERSION_MAJOR}::Test)
+target_link_libraries(UnitTests PRIVATE MyProjectLib Qt${QT_VERSION_MAJOR}::Xml)
 
 # Include directories for the tests
 target_include_directories(UnitTests PRIVATE ${CMAKE_SOURCE_DIR}/../src)

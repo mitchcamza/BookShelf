@@ -20,6 +20,8 @@ public:
 
     void addBook(Book *book);
 
+    QList<Book *> getBookList() const;
+
 private:
     QList<Book*> bookList;
 

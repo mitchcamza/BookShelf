@@ -9,8 +9,8 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Xml)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Xml)
 
 set(PROJECT_SOURCES
     resources.qrc
@@ -24,7 +24,9 @@ set(PROJECT_SOURCES
 
 # Create library
 add_library(MyProjectLib ${PROJECT_SOURCES}
-    bookfactory.h bookfactory.cpp)
+    bookfactory.h bookfactory.cpp
+    filewriter.h filewriter.cpp
+    bookwriter.h bookwriter.cpp)
 
 # Include directories for the library
 target_include_directories(MyProjectLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
@@ -51,6 +53,8 @@ else()
 endif()
 
 target_link_libraries(COS3711-03-01 PRIVATE MyProjectLib Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(MyProjectLib PRIVATE Qt${QT_VERSION_MAJOR}::Xml)
+
 
 set_target_properties(COS3711-03-01 PROPERTIES
     MACOSX_BUNDLE TRUE

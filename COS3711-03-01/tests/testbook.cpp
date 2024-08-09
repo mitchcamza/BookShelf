@@ -1,6 +1,16 @@
+/**
+ * @file testbook.cpp
+ * @author Mitch Campbell
+ * @brief This file contains the implementation of the TestBook class. 
+ * @date 2024-08-09
+ * @copyright Copyright (c) 2024
+ */
+
+
 #include "testbook.h"
 #include "book.h"
 #include "author.h"
+
 
 void TestBook::testDefaultConstructor()
 {

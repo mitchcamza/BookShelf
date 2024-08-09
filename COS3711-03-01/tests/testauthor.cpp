@@ -1,5 +1,15 @@
-#include "tst_author.h"
+/**
+ * @file testauthor.cpp
+ * @author Mitch Campbell
+ * @brief This file contains the implementation of the TestAuthor class.
+ * @date 2024-08-09
+ * @copyright Copyright (c) 2024
+ */
+
+
+#include "testauthor.h"
 #include "author.h"
+
 
 void TestAuthor::testConstructor()
 {
@@ -26,5 +36,4 @@ void TestAuthor::testToString()
     QCOMPARE(author.toString(), QString("DOE, JOHN"));
 }
 
-// QTEST_APPLESS_MAIN(TestAuthor)
-#include "tst_author.moc"
+#include "testauthor.moc"

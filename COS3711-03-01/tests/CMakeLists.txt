@@ -15,7 +15,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(UNIT_TEST_SOURCES
-    tst_author.h tst_author.cpp
+    testauthor.h testauthor.cpp
     testbook.h testbook.cpp
     testbooktablemodel.h testbooktablemodel.cpp
     testbookproxymodel.h testbookproxymodel.cpp

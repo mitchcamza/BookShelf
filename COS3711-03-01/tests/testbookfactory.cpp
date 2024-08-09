@@ -1,3 +1,12 @@
+/**
+ * @file testbookfactory.cpp
+ * @author Mitch Campbell
+ * @brief This file contains the implementation of the TestBookFactory class.
+ * @date 2024-08-09
+ * @copyright Copyright (c) 2024
+ */
+
+
 #include "testbookfactory.h"
 #include "book.h"
 #include "bookfactory.h"

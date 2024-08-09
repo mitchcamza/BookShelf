@@ -1,8 +1,9 @@
 /**
  * @file mainwindow.cpp
  * @author Mitch Campbell
+ * @brief This file contains the implementation of the MainWindow class.
  * @date 2024-07-25
- * @copyright Copyright (c) 2024 Mitch Campbell
+ * @copyright Copyright (c) 2024 
  */
 
 
@@ -78,7 +79,6 @@ void MainWindow::setupUI()
     // Status Bar
     QStatusBar *statusBar = new QStatusBar(this);
     setStatusBar(statusBar);
-    // TODO: Decide if status bar is required
 
     // Tool Bar
     QToolBar *toolBar = new QToolBar(this);

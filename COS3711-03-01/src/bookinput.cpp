@@ -1,3 +1,12 @@
+/**
+ * @file bookinput.cpp
+ * @author Mitch Campbell
+ * @brief This file contains the implementation of the BookInput class.
+ * @date 2024-08-09
+ * @copyright Copyright (c) 2024
+ */
+
+
 #include "book.h"
 #include "bookinput.h"
 #include "booktablemodel.h"
@@ -115,7 +124,7 @@ void BookInput::cancel()
 
 void BookInput::setupUI()
 {
-    // Window Attrbiutes
+    // Window Attributes
     setWindowTitle("New Book");
     setWindowModality(Qt::ApplicationModal);
     resize(410, 472);
@@ -202,16 +211,6 @@ bool BookInput::isValidInput()
         lineEditTitle->setFocus();
         return false;
     }
-
-    // // Check if ISBN is empty or invalid
-    // static QRegularExpression isbnRegex("\\d{3}-\\d{1,5}-\\d{1,7}-\\d{1,7}-\\d{1}");
-    // QRegularExpressionMatch isbnMatch = isbnRegex.match(lineEditIsbn->text());
-    // if (lineEditIsbn->text().isEmpty() || !isbnMatch.hasMatch())
-    // {
-    //     QMessageBox::warning(this, "Input Error", "Please enter a valid ISBN (format: 978-3-16-148410-0).");
-    //     lineEditIsbn->setFocus();
-    //     return false;
-    // }
     // Check if ISBN is empty
     if (lineEditIsbn->text().isEmpty())
     {

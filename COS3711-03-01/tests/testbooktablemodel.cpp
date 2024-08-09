@@ -1,3 +1,12 @@
+/**
+ * @file testbooktablemodel.cpp
+ * @author Mitch Campbell
+ * @brief This file contains the implementation of the TestBookTableModel class.
+ * @date 2024-08-09
+ * @copyright Copyright (c) 2024
+ */
+
+
 #include "testbooktablemodel.h"
 #include "booktablemodel.h"
 #include "book.h"

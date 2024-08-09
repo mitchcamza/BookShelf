@@ -6,10 +6,11 @@
  */
 
 
+#include "bookinput.h"
+#include "bookproxymodel.h"
+#include "booktablemodel.h"
+#include "bookwriter.h"
 #include "mainwindow.h"
-// #include "bookproxymodel.h"
-// #include "bookinput.h"
-// #include "bookview.h"
 
 #include <QFileDialog>
 #include <QGridLayout>
@@ -20,24 +21,30 @@
 #include <QMessageBox>
 #include <QPushButton>
 #include <QStatusBar>
+#include <QTableView>
 #include <QToolBar>
 
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
-    menuBar(new QMenuBar(this)),
-    statusBar(new QStatusBar(this)),
-    toolBar(new QToolBar(this)),
-    actionAddBook(new QAction(this)),
-    actionExportBooks(new QAction(this)),
-    actionClose(new QAction(this)),
+    bookTableModel(new BookTableModel(this)),
+    bookProxyModel(new BookProxyModel(this)),
+    bookTableView(new QTableView(this)),
+    actionAddBook(new QAction(QIcon(":/icons/addBook"), tr("New Book"), this)),
+    actionExportBooks(new QAction(QIcon(":/icons/export"), tr("Export Books"), this)),
+    actionClose(new QAction(QIcon(":/icons/exit"), tr("Exit Application"), this)),
     lineEditSearch(new QLineEdit(this)),
-    pushButtonClear(new QPushButton(this))
-
+    pushButtonClear(new QPushButton("Clear Filter", this))
 {
+    // Proxy Model
+    bookProxyModel->setSourceModel(bookTableModel);
+    bookProxyModel->setFilterKeyColumn(0);
+    bookProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
+
+    // Signals and Slots connections
     connect(actionAddBook, &QAction::triggered, this, &MainWindow::addBook);
     connect(actionExportBooks, &QAction::triggered, this, &MainWindow::exportBooks);
-    // connect(lineEditSearch, &QLineEdit::textEdited, bookProxyModel, &BookProxyModel::setFilterText);
+    connect(lineEditSearch, &QLineEdit::textEdited, bookProxyModel, &BookProxyModel::setFilter);
     connect(pushButtonClear, &QPushButton::clicked, this, &MainWindow::clearFilter);
     connect(actionClose, &QAction::triggered, this, &MainWindow::close);
 
@@ -51,11 +58,10 @@ void MainWindow::setupUI()
 {
     // Main Application Window
     setWindowTitle("Book Shelf");
-    this->resize(1000, 600);
+    resize(1000, 600);
 
     // Menu Bar
-    menuBar = new QMenuBar(this);
-    menuBar->setGeometry(QRect(0, 0, 800, 24));
+    QMenuBar *menuBar = new QMenuBar(this);
     setMenuBar(menuBar);
 
     // File Menu
@@ -66,18 +72,21 @@ void MainWindow::setupUI()
     fileMenu->addAction(actionClose);
 
     // Edit Menu
-    QMenu *editMenu = menuBar->addMenu(tr("Edit"));
+    QMenu *editMenu = menuBar->addMenu(tr("&Edit"));
     editMenu->addAction(actionAddBook);
 
     // Status Bar
-    statusBar = new QStatusBar(this);
+    QStatusBar *statusBar = new QStatusBar(this);
     setStatusBar(statusBar);
+    // TODO: Decide if status bar is required
 
     // Tool Bar
-    toolBar = new QToolBar(this);
+    QToolBar *toolBar = new QToolBar(this);
+    actionAddBook->setIcon(QIcon(":/icons/addBook"));
     toolBar->addAction(actionAddBook);
     toolBar->addSeparator();
     toolBar->addAction(actionExportBooks);
+    addToolBar(Qt::TopToolBarArea, toolBar);
 
     // Central Widget and Layout
     QWidget *centralWidget = new QWidget(this);
@@ -89,23 +98,42 @@ void MainWindow::setupUI()
     gridLayout->addWidget(lineEditSearch, 0, 0, 1, 3);
     gridLayout->addWidget(pushButtonClear, 0, 3, 1, 1);
 
-    // Proxy Model
-    // TODO
-
+    // Book table view
+    bookTableView->setModel(bookProxyModel);
+    bookTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    bookTableView->setSortingEnabled(true);
+    gridLayout->addWidget(bookTableView, 1, 0, 1, 4);
 }
 
 void MainWindow::addBook()
 {
-    // TODO
+    BookInput *bookInputDialog = new BookInput(bookTableModel, this);
+    bookInputDialog->show();
 }
 
 void MainWindow::exportBooks()
 {
-    // TODO
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Export Book List"), "", tr("XML Files (*.xml);; All Files (*)"));
+    if (fileName.isEmpty())
+    {
+        return;
+    }
+
+    BookWriter writer(fileName);
+    if (writer.write(bookTableModel->getBookList()))
+    {
+        QMessageBox::information(this, tr("Export Successful"), tr("The book list was exported successfully."));
+    }
+    else
+    {
+        QMessageBox::warning(this, tr("Export Failed"), tr("Failed to export book list."));
+    }
 }
 
 void MainWindow::clearFilter()
 {
-    // TODO
+    lineEditSearch->clear();
+    lineEditSearch->setFocus();
+    bookProxyModel->setFilter(lineEditSearch->text());
 }
 

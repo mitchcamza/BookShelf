@@ -12,21 +12,20 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Xml)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Xml)
 
-set(PROJECT_SOURCES
-    resources.qrc
+set(LIBRARY_SOURCES
     mainwindow.h mainwindow.cpp
     author.h author.cpp
     book.h book.cpp
     bookinput.h bookinput.cpp
     booktablemodel.h booktablemodel.cpp
     bookproxymodel.h bookproxymodel.cpp
+    bookfactory.h bookfactory.cpp
+    filewriter.h filewriter.cpp
+    bookwriter.h bookwriter.cpp
 )
 
 # Create library
-add_library(MyProjectLib ${PROJECT_SOURCES}
-    bookfactory.h bookfactory.cpp
-    filewriter.h filewriter.cpp
-    bookwriter.h bookwriter.cpp)
+add_library(MyProjectLib ${LIBRARY_SOURCES})
 
 # Include directories for the library
 target_include_directories(MyProjectLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
@@ -39,6 +38,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(COS3711-03-01
         MANUAL_FINALIZATION
         main.cpp
+        resources.qrc
     )
 else()
     if(ANDROID)

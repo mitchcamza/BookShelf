@@ -38,28 +38,40 @@ QDomElement BookWriter::createBookElement(QDomDocument &doc, const Book *book)
     QDomElement bookElement = doc.createElement("book");
 
     // Title
-    QDomElement titleElement = doc.createElement("title");
-    titleElement.appendChild(doc.createTextNode(book->getTitle()));
-    bookElement.appendChild(titleElement);
+    if (book->property("title").canConvert<QString>())
+    {
+        QDomElement titleElement = doc.createElement("title");
+        titleElement.appendChild(doc.createTextNode(book->property("title").toString()));
+        bookElement.appendChild(titleElement);
+    }
 
     // Authors
-    QDomElement authorsElement = doc.createElement("authors");
-    QStringList authors = book->getAuthors();
-    QString authorsString = authors.join("; ");
-    authorsElement.appendChild(doc.createTextNode(authorsString));
-    bookElement.appendChild(authorsElement);
+    if (book->property("authors").canConvert<QStringList>())
+    {
+        QDomElement authorsElement = doc.createElement("authors");
+        QStringList authors = book->property("authors").toStringList();
+        QString authorsString = authors.join("; ");
+        authorsElement.appendChild(doc.createTextNode(authorsString));
+        bookElement.appendChild(authorsElement);
+    }
 
 
     // Publication Date
-    QDomElement publicationDateElement = doc.createElement("date");
-    publicationDateElement.appendChild(doc.createTextNode(book->getPublicationDate().toString(Qt::ISODate)));
-    bookElement.appendChild(publicationDateElement);
+    if (book->property("publicationDate").canConvert<QString>())
+    {
+        QDomElement publicationDateElement = doc.createElement("date");
+        publicationDateElement.appendChild(doc.createTextNode(book->property("publicationDate").toString()));
+        bookElement.appendChild(publicationDateElement);
+    }
 
 
     // ISBN
-    QDomElement isbnElement = doc.createElement("isbn");
-    isbnElement.appendChild(doc.createTextNode(book->getIsbn()));
-    bookElement.appendChild(isbnElement);
+    if (book->property("isbn").canConvert<QString>())
+    {
+        QDomElement isbnElement = doc.createElement("isbn");
+        isbnElement.appendChild(doc.createTextNode(book->property("isbn").toString()));
+        bookElement.appendChild(isbnElement);
+    }
 
     return bookElement;
 }

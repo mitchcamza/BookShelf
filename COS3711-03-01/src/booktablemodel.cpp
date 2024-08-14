@@ -51,20 +51,37 @@ QVariant BookTableModel::data(const QModelIndex &index, int role) const
         int col = index.column();
         int row = index.row();
 
-        if (col == 0) { return bookList.at(row)->getTitle(); }
-        if (col == 1)
+        switch (col)
         {
-            if (bookList.at(row)->getAuthors().count() == 1)
+            case 0:
             {
-                return bookList.at(row)->getAuthors();
+                return bookList.at(row)->property("title");
+                break;
             }
-            else if (bookList.at(row)->getAuthors().count() > 1)
+            case 1:
             {
-                return bookList.at(row)->getAuthors().join("; ");
+                if (bookList.at(row)->property("authors").toList().count() == 1)
+                {
+                    return bookList.at(row)->property("authors");
+                }
+                else if (bookList.at(row)->property("authors").toList().count() > 1)
+                {
+                    QStringList authors = bookList.at(row)->property("authors").toStringList();
+                    return authors.join("; ");
+                }
+                break;
+            }
+            case 2:
+            {
+                return bookList.at(row)->property("publicationDate");
+                break;
+            }
+            case 3:
+            {
+                return bookList.at(row)->property("isbn");
+                break;
             }
         }
-        if (col == 2) { return bookList.at(row)->getPublicationDate(); }
-        if (col == 3) { return bookList.at(row)->getIsbn(); }
     }
     return QVariant();
 }
@@ -80,18 +97,26 @@ QVariant BookTableModel::headerData(int section, Qt::Orientation orientation, in
     {
         switch(section)
         {
-        case 0:
-            return QString("Title");
-            break;
-        case 1:
-            return QString("Author");
-            break;
-        case 2:
-            return QString("Publication Date");
-            break;
-        case 3:
-            return QString("ISBN");
-            break;
+            case 0:
+            {
+                return QString("Title");
+                break;
+            }
+            case 1:
+            {
+                return QString("Author");
+                break;
+            }
+            case 2:
+            {
+                return QString("Publication Date");
+                break;
+            }
+            case 3:
+            {
+                return QString("ISBN");
+                break;
+            }
         }
     }
     return QVariant();
@@ -106,18 +131,38 @@ bool BookTableModel::setData(const QModelIndex &index, const QVariant &value, in
 
         switch (col)
         {
-        case 0:
-            bookList.at(row)->setTitle(value.toString());
-            break;
-        case 1:
-            bookList.at(row)->setAuthors(value.toStringList());
-            break;
-        case 2:
-            bookList.at(row)->setPublicationDate(value.toDate());
-            break;
-        case 3:
-            bookList.at(row)->setIsbn(value.toString());
-            break;
+            case 0:
+            {
+                if (bookList.at(row)->property("title").canConvert<QString>())
+                {
+                    bookList.at(row)->setProperty("title", value.toString());
+                    break;
+                }
+            }
+            case 1:
+            {
+                if (bookList.at(row)->property("authors").canConvert<QStringList>())
+                {
+                    bookList.at(row)->setProperty("authors", value.toStringList());
+                    break;
+                }
+            }
+            case 2:
+            {
+                if (bookList.at(row)->property("publicationDate").canConvert<QDate>())
+                {
+                    bookList.at(row)->setProperty("publicationDate", value.toDate());
+                    break;
+                }
+            }
+            case 3:
+            {
+                if (bookList.at(row)->property("isbn").canConvert<QString>())
+                {
+                    bookList.at(row)->setProperty("isbn", value.toString());
+                    break;
+                }
+            }
         }
         emit dataChanged(index, index, { role });
         return true;

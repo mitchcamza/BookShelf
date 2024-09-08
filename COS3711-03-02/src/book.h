@@ -19,8 +19,14 @@
  * @class Book
  * @brief The Book class represents a book object.
  */
-class Book
+class Book  : public QObject
 {
+    Q_OBJECT
+    Q_PROPERTY(QString title READ getTitle WRITE setTitle NOTIFY titleChanged)
+    Q_PROPERTY(QStringList authors READ getAuthors WRITE setAuthors NOTIFY authorsChanged)
+    Q_PROPERTY(QString isbn READ getIsbn WRITE setIsbn NOTIFY isbnChanged)
+    Q_PROPERTY(QDate publicationDate READ getPublicationDate WRITE setPublicationDate NOTIFY publicationDateChanged)
+
 public:
     /**
      * @brief Construct a new Book object
@@ -38,6 +44,7 @@ public:
      */
     Book(const QString &title, const QStringList &authors, const QString &isbn, const QDate &publicationDate);
 
+private:
     /**
      * @brief Set the book's title
      * 
@@ -93,6 +100,13 @@ public:
      * @return QDate 
      */
     QDate getPublicationDate() const;
+
+signals:
+    void titleChanged(const QString &newTitle);
+    void authorsChanged(const QStringList &newAuthorsList);
+    void isbnChanged(const QString &newIsbn);
+    void publicationDateChanged(const QDate &newPublicationDate);
+
 
 private:
     QString m_title;            /**< The title of the book. */

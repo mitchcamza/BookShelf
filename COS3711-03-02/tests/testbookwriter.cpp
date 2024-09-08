@@ -19,10 +19,10 @@ void TestBookWriter::testWriteSingleBook()
 
     // Mocking a Book object
     Book book1;
-    book1.setTitle("Harry Potter");
-    book1.setAuthors({"J.K. Rowling"});
-    book1.setPublicationDate(QDate(2024, 8, 8));
-    book1.setIsbn("999-9-99-999999-9");
+    book1.setProperty("title", "Harry Potter");
+    book1.setProperty("authors", QStringList{"J.K. Rowling"});
+    book1.setProperty("publicationDate", QDate(2024, 8, 8));
+    book1.setProperty("isbn", "999-9-99-999999-9");
 
     BookWriter writer(fileName);
     bool result = writer.write({&book1});
@@ -56,15 +56,15 @@ void TestBookWriter::testWriteMultipleBooks()
 
     // Mocking Book objects
     Book book1, book2;
-    book1.setTitle("Book 1");
-    book1.setAuthors({"Author One"});
-    book1.setPublicationDate(QDate(2023, 1, 1));
-    book1.setIsbn("123-4-56-789012-3");
+    book1.setProperty("title", "Book 1");
+    book1.setProperty("authors", QStringList{"Author One"});
+    book1.setProperty("publicationDate", QDate(2023, 1, 1));
+    book1.setProperty("isbn", "123-4-56-789012-3");
 
-    book2.setTitle("Book 2");
-    book2.setAuthors({"Author Two", "Author Three"});
-    book2.setPublicationDate(QDate(2024, 2, 2));
-    book2.setIsbn("234-5-67-890123-4");
+    book2.setProperty("title", "Book 2");
+    book2.setProperty("authors", QStringList{"Author Two", "Author Three"});
+    book2.setProperty("publicationDate", QDate(2024, 2, 2));
+    book2.setProperty("isbn", "234-5-67-890123-4");
 
     BookWriter writer(fileName);
     bool result = writer.write({&book1, &book2});

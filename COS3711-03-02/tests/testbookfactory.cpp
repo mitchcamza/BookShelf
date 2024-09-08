@@ -24,10 +24,10 @@ void TestBookFactory::testCreateBook()
     Book *book = bookFactory.createBook(title, authors, isbn, publicationDate);
 
     QVERIFY(book != nullptr);
-    QCOMPARE(book->getTitle(), title);
-    QCOMPARE(book->getAuthors(), authors);
-    QCOMPARE(book->getIsbn(), isbn);
-    QCOMPARE(book->getPublicationDate(), publicationDate);
+    QCOMPARE(book->property("title"), title);
+    QCOMPARE(book->property("authors"), authors);
+    QCOMPARE(book->property("isbn"), isbn);
+    QCOMPARE(book->property("publicationDate"), publicationDate);
 
     delete book;
 }

@@ -1,4 +1,4 @@
-# COS3711-03-01
+# COS3711-03-02
 A Book Management Application
 
 ## Project Overview
@@ -15,6 +15,8 @@ A Book Management Application
 - **Custom Models**: The application uses `BookTableModel` to represent book data and `BookProxyModel` to filter and sort the data.
 - **XML Serialization**: Export book data to an XML file using the `BookWriter` class.
 - **Filter Books**: Filter books based on author name or book title.
+
+![alt text](<Screenshot 2024-09-08 at 16.04.51.png>)
 
 ## Getting Started
 
@@ -60,33 +62,48 @@ A Book Management Application
     ```
 
 ## Project Structure
-	•	CMakeLists.txt: Main CMake configuration file for building the project.
-	•	src/: Source files for the project.
-        •	CMakeLists.txt: Cmake configuration file for building the project (without tests).
-        •	main.cpp: Entry point of the application.
-        •	author.h, author.cpp: Class representing an author.
-        •	book.h, book.cpp: Class representing a book.
-        •	filewriter.h, filewriter.cpp: Class for writing text to a file.
-        •	bookwriter.h, bookwriter.cpp: Class for serializing book objects to XML.
-        •	bookfactory.h, bookfactory.cpp: Class for deserializing book objects from XML.
-        •	bookinput.h, bookinput.cpp: Handles book input data.
-        •	booktablemodel.h, booktablemodel.cpp: Custom model representing book data.
-        •	bookproxymodel.h, bookproxymodel.cpp: Custom proxy model for filtering book data.
-        •	mainwindow.h, mainwindow.cpp: Main window class for the GUI.
-        •	resources.qrc: A resource file containing resources used.
-	•	tests/: Unit tests for the project.
-        •	CMakeLists.txt: Cmake configuration file for building the tests.
-        •	testauthor.cpp, testauthor.h: Unit tests for the Author class.
-        •	testbook.cpp, testbook.h: Unit tests for the Book class.
-        •	testfilewriter.cpp, testfilewriter.h: Unit tests for the FileWriter class.
-        •	testbookwriter.cpp, testbookwriter.h: Unit tests for the BookWriter class.
-        •	testbookfactory.cpp, testbookfactory.h: Unit tests for the BookFactory class.
-        •	testbooktablemodel.cpp, testbooktablemodel.h: Unit tests for the BookTableModel class.
-        •	testbookproxymodel.cpp, testbookproxymodel.h: Unit tests for the BookProxyModel class.
-        •	docs/: Documentation files.
-        •	README.md: Project overview and information.
-        •	user_manual.md: User manual for the application.
-        •	api_reference.md: API reference documentation for the classes and methods used in the project.
+```
+MyProject/
+├── CMakeLists.txt        # Root CMake file for the entire project
+├── src/                  # Source directory
+│   ├── CMakeLists.txt    # CMake file for source code
+│   ├── main.cpp
+│   ├── author.h
+│   ├── author.cpp
+│   ├── book.h
+│   ├── book.cpp
+│   ├── bookfactory.h
+│   ├── bookfactory.cpp
+│   ├── bookinput.h
+│   ├── bookinput.cpp
+│   ├── bookproxymodel.h
+│   ├── bookproxymodel.cpp
+│   ├── booktablemodel.h
+│   ├── booktablemodel.cpp
+│   ├── bookwriter.h
+│   ├── bookwriter.cpp
+│   ├── filewriter.h
+│   ├── filewriter.cpp
+│   ├── mainwindow.h
+│   └── mainwindow.cpp
+
+├── tests/                # Tests directory
+│   ├── CMakeLists.txt    # CMake file for tests
+│   ├── testauthor.h
+│   ├── testauthor.cpp
+│   ├── testbook.h
+│   ├── testbook.cpp
+│   ├── testbookfactory.h
+│   ├── testbookfactory.cpp
+│   ├── testbookproxymodel.h
+│   ├── testbookproxymodel.cpp
+│   ├── testbooktablemodel.h
+│   ├── testbooktablemodel.cpp
+│   ├── testbookwriter.h
+│   ├── testbookwriter.cpp
+│   ├── testfilewriter.h
+│   └── testfilewriter.cpp
+```
 
 ## Usage
 The application allows users to manage a collection of books, including adding new books, filtering the list, and exporting or importing the collection as an XML file.
@@ -100,7 +117,7 @@ The application allows users to manage a collection of books, including adding n
 
 ### Filtering Books
 
-	•	Use the search bar to filter books by title or author name. The displayed results will update as you type.
+    - Use the search bar to filter books by title or author name. The displayed results will update as you type.
 
 ### Exporting Books
 
@@ -108,10 +125,11 @@ The application allows users to manage a collection of books, including adding n
 	2.	Choose a destination and file name for the XML file.
 	3.	Save the file to export the current book list.
 
-### Authors
+## Author
+Mitch Campbell
 
-	•	Mitch Campbell
+[LinkedIn](https://www.linkedin.com/in/mitch-campbell-93b18919b/)
 
-### License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

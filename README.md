@@ -1,6 +1,8 @@
 # COS3711-03-02
 A Book Management Application
 
+[![Build](https://github.com/mitchcamza/COS3711-03/actions/workflows/build.yml/badge.svg)](https://github.com/mitchcamza/COS3711-03/actions/workflows/build.yml)
+
 ## Project Overview
 
 - **Book Management**: Classes for representing and managing books (`Book`, `Author`, etc.) and functionality to read from and write to XML files.

@@ -1,4 +1,4 @@
-# COS3711-03-02
+# BookShelf
 A Book Management Application
 
 [![Build](https://github.com/mitchcamza/COS3711-03/actions/workflows/build.yml/badge.svg)](https://github.com/mitchcamza/COS3711-03/actions/workflows/build.yml)

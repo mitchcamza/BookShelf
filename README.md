@@ -2,6 +2,7 @@
 A Book Management Application
 
 [![Build](https://github.com/mitchcamza/COS3711-03/actions/workflows/build.yml/badge.svg)](https://github.com/mitchcamza/COS3711-03/actions/workflows/build.yml)
+[![Test](https://github.com/mitchcamza/BookShelf/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/mitchcamza/BookShelf/actions/workflows/test.yml)
 
 ## Project Overview
 

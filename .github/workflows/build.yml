@@ -11,9 +11,8 @@ on:
       - dev
       
 jobs:
-  build:
+  build-linux:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -36,5 +35,51 @@ jobs:
           name: build-artifacts
           path: build/
           
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Qt and dependencies
+        run: |
+          choco install qt6 cmake mingw
+
+      - name: Build project
+        run: |
+          mkdir build
+          cd build
+          cmake ../
+          mingw32-make
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: build/
+
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Qt and dependencies
+        run: |
+          brew install qt6 cmake
+
+      - name: Build project
+        run: |
+          mkdir build
+          cd build
+          cmake ../
+          make
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: build/
+
     outputs:
       build-success: ${{ steps.build.outcome == 'success' }}

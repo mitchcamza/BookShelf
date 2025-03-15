@@ -1,14 +1,14 @@
 name: Build
 
 on:   
-  workflow_dispatch:  # Allows manual triggering
-  push:
-    tags:
-      - 'v*'  # Runs on version tag pushes (e.g., v1.0.0)
   pull_request:
     branches: 
       - main
-      - dev
+  push:
+    branches:
+      - feature/*
+      - COS3711-03-01
+      - COS3711-03-02
       
 jobs:
   build:
@@ -27,11 +27,11 @@ jobs:
         run: |
           mkdir -p build
           cd build
-          cmake ../COS3711-03-01/
+          cmake ../COS3711-03-02/
           make
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: build-artifacts
           path: build/
